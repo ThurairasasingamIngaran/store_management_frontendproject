@@ -3,14 +3,12 @@ import './App.css';
 import {Menu} from 'antd';
 import { Route,Routes,useNavigate } from 'react-router-dom';
 import{HomeOutlined,DashboardOutlined,UserOutlined, UnorderedListOutlined,PoweroffOutlined} from "@ant-design/icons/lib/icons"
-//import { Footer, Header } from 'antd/es/layout/layout';
-
 
 function App() {
   return (
-    <div>
+    <div style={{display:'flex',flexDirection:'column',flex: 1, height:'100vh'}}>
 <Header />
-<div>
+<div style={{display:'flex',flexDirection:'row',flex: 1}}>
   <SideMenu />
   <Content />
 </div>
@@ -19,14 +17,41 @@ function App() {
   );
   }
   function Header(){
-    return <div style={{display:'flex',flexDirection:'row'}}>Header</div>
-  }
+    return (
+    <div 
+    style={{
+      height:60,
+      background:"lightskyblue",
+      color:"white",
+      display:"flex",
+      justifyContent:"center",
+      alignItems:"center",
+      fontWeight:"bold",
+}}
+>
+  Header
+</div>
+);
+}
   function Footer(){
-    return <div>Footer</div>
+    return <div
+    style={{
+      height:60,
+      background:"lightgray",
+      color:"black",
+      display:"flex",
+      justifyContent:"center",
+      alignItems:"center",
+      fontWeight:"bold",
+    }}
+    >
+      Footer
+      </div>
   }
 function SideMenu(){
   const navigate=useNavigate();
-  return (<div style={{display:'flex',flexDirection:'row'}}>
+  return (
+      <div style={{display:'flex',flexDirection:'row'}}>
       <Menu 
       onClick={({key})=>{
         if(key==="signout"){
@@ -35,11 +60,17 @@ function SideMenu(){
           navigate(key);
         }
       }}
+      defaultSelectedKeys={[window.location.pathname]}
       
       items={[
         {label:"Home", key:"/",icon:<HomeOutlined/>},
         {label:"Dashboard",key:"/dashborad",icon:<DashboardOutlined/>},
-        {label:"Users List",key:"/usersList",icon:<UnorderedListOutlined/>},
+        {label:"Users List",key:"/usersList",icon:<UnorderedListOutlined/>,
+      children:[
+        {label:"Active Users", key:"/activeUsers"},
+        {label:"Disabled Users", key:"/disabledUsers"}
+      ],
+},
         {label:"Profile" ,key:"/profile",icon:<UserOutlined />},
         {label:"SignOut",key:"/signout",icon:<PoweroffOutlined/>,danger:true}
         ]}>
@@ -49,15 +80,18 @@ function SideMenu(){
       );
 }
 
-
+function Home(){
+  return <div>Home Component</div>
+}
 
 function Content(){
   return (
     <div>
       <Routes>
-        <Route path="/" element={<div>Home</div>}></Route>
+        <Route path="/" element={<Home />}></Route>
         <Route path="/dashborad" element={<div>Dashboard</div>}></Route>
-        <Route path="/usersList" element={<div>Users List</div>}></Route>
+        <Route path="/activeUsers" element={<div>Active Users</div>}></Route>
+        <Route path="/disabledUsers" element={<div>Disabled</div>}></Route>
         <Route path="/profile" element={<div>Profile</div>}></Route>
       </Routes>
     </div>
@@ -65,6 +99,3 @@ function Content(){
 }
 
 export default App;
-
-
-
