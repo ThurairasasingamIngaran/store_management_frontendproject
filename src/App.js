@@ -2,7 +2,9 @@ import React from 'react';
 import './App.css';
 import {Menu} from 'antd';
 import { Route,Routes,useNavigate } from 'react-router-dom';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import{HomeOutlined,DashboardOutlined,UserOutlined, UnorderedListOutlined,PoweroffOutlined} from "@ant-design/icons/lib/icons"
+import img1 from './Images/1.png';
 
 function App() {
   return (
@@ -18,18 +20,30 @@ function App() {
   }
   function Header(){
     return (
-    <div 
-    style={{
-      height:60,
-      background:"lightskyblue",
-      color:"white",
-      display:"flex",
-      justifyContent:"center",
-      alignItems:"center",
-      fontWeight:"bold",
-}}
->
-  Header
+//     <div 
+//     style={{
+//       height:60,
+//       background:"lightgray",
+//       color:"white",
+//       display:"flex",
+//       justifyContent:"center",
+//       alignItems:"center",
+//       fontWeight:"bold",
+// }}
+
+// >
+//   Header
+// </div>
+
+<div>
+<nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: 'blue' }}>
+
+  <img src={img1} alt="" style={{ Width: '40px', height: '40px',marginLeft: '10px', marginRight: '10px'  }}/>
+  <a className="navbar-brand" style={{ marginLeft: '10px', marginRight: '10px' }}> Invicta Employee Management </a>
+<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span className="navbar-toggler-icon"></span>
+</button>
+</nav>
 </div>
 );
 }
@@ -37,7 +51,7 @@ function App() {
     return <div
     style={{
       height:60,
-      background:"lightgray",
+      
       color:"black",
       display:"flex",
       justifyContent:"center",
@@ -51,7 +65,7 @@ function App() {
 function SideMenu(){
   const navigate=useNavigate();
   return (
-      <div style={{display:'flex',flexDirection:'row'}}>
+     <div style={{display:'flex',flexDirection:'row',backgroundColor:'lightblue'}}>
       <Menu 
       onClick={({key})=>{
         if(key==="signout"){
@@ -61,7 +75,7 @@ function SideMenu(){
         }
       }}
       defaultSelectedKeys={[window.location.pathname]}
-      
+style={{ backgroundColor: 'lightblue' }}
       items={[
         {label:"Home", key:"/",icon:<HomeOutlined/>},
         {label:"Dashboard",key:"/dashborad",icon:<DashboardOutlined/>},
@@ -74,6 +88,7 @@ function SideMenu(){
         {label:"Profile" ,key:"/profile",icon:<UserOutlined />},
         {label:"SignOut",key:"/signout",icon:<PoweroffOutlined/>,danger:true}
         ]}>
+
 
       </Menu>
       </div>
