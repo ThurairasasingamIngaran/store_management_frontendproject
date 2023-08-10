@@ -5,6 +5,7 @@ import { Route,Routes,useNavigate } from 'react-router-dom';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import{HomeOutlined,DashboardOutlined,UserOutlined, UnorderedListOutlined,PoweroffOutlined} from "@ant-design/icons/lib/icons"
 import img1 from './Images/1.png';
+import Profile from './Pages/Profile';
 
 function App() {
   return (
@@ -18,23 +19,9 @@ function App() {
   </div>  
   );
   }
+
   function Header(){
     return (
-//     <div 
-//     style={{
-//       height:60,
-//       background:"lightgray",
-//       color:"white",
-//       display:"flex",
-//       justifyContent:"center",
-//       alignItems:"center",
-//       fontWeight:"bold",
-// }}
-
-// >
-//   Header
-// </div>
-
 <div>
 <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: 'blue' }}>
 
@@ -51,8 +38,8 @@ function App() {
     return <div
     style={{
       height:60,
-      
       color:"black",
+      background:"lightgray",
       display:"flex",
       justifyContent:"center",
       alignItems:"center",
@@ -85,11 +72,9 @@ style={{ backgroundColor: 'lightblue' }}
         {label:"Disabled Users", key:"/disabledUsers"}
       ],
 },
-        {label:"Profile" ,key:"/profile",icon:<UserOutlined />},
+        { label:"Profile" ,key:"/profile",icon:<UserOutlined />},
         {label:"SignOut",key:"/signout",icon:<PoweroffOutlined/>,danger:true}
         ]}>
-
-
       </Menu>
       </div>
       );
@@ -99,6 +84,7 @@ function Home(){
   return <div>Home Component</div>
 }
 
+
 function Content(){
   return (
     <div>
@@ -107,7 +93,7 @@ function Content(){
         <Route path="/dashborad" element={<div>Dashboard</div>}></Route>
         <Route path="/activeUsers" element={<div>Active Users</div>}></Route>
         <Route path="/disabledUsers" element={<div>Disabled</div>}></Route>
-        <Route path="/profile" element={<div>Profile</div>}></Route>
+        <Route path="/profile" element={<Profile/>}></Route>
       </Routes>
     </div>
   )
